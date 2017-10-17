@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue</title>
+    <style>
+      [v-cloak]{
+        display:none;
+      }
+    </style>
+  </head>
+<body>
+  <div id="app" v-cloak>
+    <form v-on:submit.prevent="addTodo">
+      <h2>Add Todo</h2>
+      <input type="text" v-model="title">
+      <button :disabled="title ===''">ADD</button>
+    </form>
+
+    <h2>TODOS</h2>
+    <ul>
+      <li v-for="item in todos" v-if="!item.done">
+       <button v-on:click="toggleTodo(item)" >+</button>
+       <button v-on:click="removeTodo(item)" >x</button>
+       {{item.title}}
+      </li>
+    </ul>
+
+    <h2>DONE</h2>
+      <button v-on:click="clearDone" >Clear</button>
+    <ul>
+      <li v-for="item in todos" v-if="item.done">
+      <button v-on:click="toggleTodo(item)" >-</button>
+      <button v-on:click="removeTodo(item)" >x</button>
+      {{item.title}}
+      </li>
+    </ul>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="main.js"></script>
+  </body>
+</html>
